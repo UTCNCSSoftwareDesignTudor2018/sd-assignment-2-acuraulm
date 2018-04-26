@@ -10,6 +10,8 @@ import acu.assignment2.business.service.StudentService;
 import acu.assignment2.business.transfer.AdministratorData;
 import acu.assignment2.business.transfer.CourseData;
 import acu.assignment2.business.transfer.StudentData;
+import acu.assignment2.business.transfer.StudentDataBuilder;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -80,6 +82,13 @@ public class DatabaseSeeder implements CommandLineRunner {
         System.out.println("------------------------------------students");
         for(StudentData student : studentService.getAllStudents())
         	System.out.println(student.toString());
-
+        
+        StudentData studentBuilt = new StudentDataBuilder()
+								                .setId((long)555)
+								                .setName("Built name")
+								        		.setUsername("builtusername")
+								                .build();
+        studentService.addStudent(studentBuilt.getUsername(), studentBuilt.getName());
+        
     }
 }
